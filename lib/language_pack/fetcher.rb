@@ -23,7 +23,7 @@ module LanguagePack
       url = @host_url
       if path.match(/bundler/)
         puts 'getting bundler from custom location'
-        url = 'https://s3-us-west-2.amazonaws.com/buildpacks'
+        url = Pathname.new('https://s3-us-west-2.amazonaws.com/buildpacks')
       end
       curl = curl_command("#{url.join(path)} -s -o")
       run!("#{curl} - | tar zxf - #{files_to_extract}", error_class: FetchError)
