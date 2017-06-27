@@ -16,7 +16,7 @@ class LanguagePack::Base
   include LanguagePack::ShellHelpers
   extend LanguagePack::ShellHelpers
 
-  VENDOR_URL           = ENV['BUILDPACK_VENDOR_URL'] || "https://s3-us-west-2.amazonaws.com/buildpacks"
+  VENDOR_URL           = ENV['BUILDPACK_VENDOR_URL'] || "https://s3-external-1.amazonaws.com/heroku-buildpack-ruby"
   DEFAULT_LEGACY_STACK = "cedar"
   ROOT_DIR             = File.expand_path("../../..", __FILE__)
 
@@ -35,7 +35,7 @@ class LanguagePack::Base
       @id            = Digest::SHA1.hexdigest("#{Time.now.to_f}-#{rand(1000000)}")[0..10]
       @warnings      = []
       @deprecations  = []
-      @fetchers      = {:buildpack => LanguagePack::Fetcher.new(VENDOR_URL) }
+      @fetchers      = {:buildpack => LanguagePack::Fetcher.new('https://s3-us-west-2.amazonaws.com/buildpacks') }
 
       Dir.chdir build_path
     end
