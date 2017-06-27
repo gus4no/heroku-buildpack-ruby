@@ -35,7 +35,7 @@ class LanguagePack::Base
       @id            = Digest::SHA1.hexdigest("#{Time.now.to_f}-#{rand(1000000)}")[0..10]
       @warnings      = []
       @deprecations  = []
-      @fetchers      = {:buildpack => LanguagePack::Fetcher.new('https://s3-us-west-2.amazonaws.com/buildpacks') }
+      @fetchers      = {:buildpack => LanguagePack::Fetcher.new(VENDOR_URL) }
 
       Dir.chdir build_path
     end
